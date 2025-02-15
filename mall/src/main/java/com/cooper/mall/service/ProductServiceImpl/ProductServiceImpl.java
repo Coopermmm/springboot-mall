@@ -4,7 +4,6 @@ import com.cooper.mall.dao.ProductDao;
 import com.cooper.mall.model.Product;
 import com.cooper.mall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
