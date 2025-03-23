@@ -1,6 +1,7 @@
 package com.cooper.mall.service.ProductServiceImpl;
 
 import com.cooper.mall.dao.ProductDao;
+import com.cooper.mall.dto.ProductRequest;
 import com.cooper.mall.model.Product;
 import com.cooper.mall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,4 +15,10 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(Integer productId) {
         return productDao.getProductById(productId);
     }
+
+    @Override
+    public Integer createProduct(ProductRequest productRequest) {
+        return productDao.createProduct(productRequest);
+    }
+
 }
