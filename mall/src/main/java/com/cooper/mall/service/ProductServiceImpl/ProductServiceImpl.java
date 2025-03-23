@@ -1,5 +1,6 @@
 package com.cooper.mall.service.ProductServiceImpl;
 
+import com.cooper.mall.constants.ProductCategory;
 import com.cooper.mall.dao.ProductDao;
 import com.cooper.mall.dto.ProductRequest;
 import com.cooper.mall.model.Product;
@@ -15,8 +16,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts() {
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductCategory category, String search) {
+        return productDao.getProducts(category, search);
     }
 
     @Override
