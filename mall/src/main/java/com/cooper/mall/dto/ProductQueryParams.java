@@ -5,6 +5,8 @@ import com.cooper.mall.constants.ProductCategory;
 public class ProductQueryParams {
     ProductCategory category;
     String search;
+    String orderBy;
+    String sort;
 
     public ProductCategory getCategory() {
         return category;
@@ -20,5 +22,21 @@ public class ProductQueryParams {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public String getOredrBy() {
+        return orderBy;
+    }
+
+    public void setOredrBy(String oredrBy) {
+        this.orderBy = oredrBy;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 }
