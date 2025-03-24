@@ -1,6 +1,7 @@
 package com.cooper.mall.controller;
 
 import com.cooper.mall.constants.ProductCategory;
+import com.cooper.mall.dto.ProductQueryParams;
 import com.cooper.mall.dto.ProductRequest;
 import com.cooper.mall.model.Product;
 import com.cooper.mall.service.ProductService;
@@ -22,7 +23,11 @@ public class ProductController {
             @RequestParam (required = false)ProductCategory category,
             @RequestParam (required = false)String search
             ){
-        List<Product> productList = productService.getProducts(category, search);
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
+
+        List<Product> productList = productService.getProducts(productQueryParams);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
 
