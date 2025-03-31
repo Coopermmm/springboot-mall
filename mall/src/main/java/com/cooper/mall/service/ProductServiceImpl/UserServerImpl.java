@@ -1,6 +1,7 @@
 package com.cooper.mall.service.ProductServiceImpl;
 
 import com.cooper.mall.dao.UserDao;
+import com.cooper.mall.dto.UserLoginRequest;
 import com.cooper.mall.dto.UserRegisterRequest;
 import com.cooper.mall.model.User;
 import com.cooper.mall.service.UserService;
@@ -36,5 +37,18 @@ public class UserServerImpl implements UserService {
         return userDao.getUserById(userId);
     }
 
-
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+        if (user == null){
+            log.warn("該 email {} 尚未註冊", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        if (user.getPassword().equals(userLoginRequest.getPassword())){
+            return user;
+        } else {
+            log.warn("該 email {} 密碼不正確", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
