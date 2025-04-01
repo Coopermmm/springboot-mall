@@ -25,12 +25,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer createUser(UserRegisterRequest userRegisterRequest) {
         String sql = " INSERT INTO users(email, password, created_date, last_modified_date) " +
-                " VALUES(:email, :password, :createDate, :lastModifiedDate) ";
+                " VALUES(:email, :password, :createdDate, :lastModifiedDate) ";
         Map<String, Object> map = new HashMap<>();
         map.put("email", userRegisterRequest.getEmail());
         map.put("password", userRegisterRequest.getPassword());
         Date now = new Date();
-        map.put("createDate", now);
+        map.put("createdDate", now);
         map.put("lastModifiedDate", now);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
