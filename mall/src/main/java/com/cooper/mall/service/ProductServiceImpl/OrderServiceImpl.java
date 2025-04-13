@@ -4,6 +4,7 @@ import com.cooper.mall.dao.OrderDao;
 import com.cooper.mall.dao.ProductDao;
 import com.cooper.mall.dto.BuyItem;
 import com.cooper.mall.dto.CreateOrderRequest;
+import com.cooper.mall.model.Order;
 import com.cooper.mall.model.OrderItem;
 import com.cooper.mall.model.Product;
 import com.cooper.mall.service.OrderService;
@@ -22,6 +23,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductDao productDao;
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+        List<OrderItem> orderItemList = orderDao.getOrderItemById(orderId);
+        order.setOrderItemList(orderItemList);
+        return order;
+    }
 
     @Transactional
     @Override
@@ -43,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
         }
         Integer orderId = orderDao.createOrder(userId, totalAmount);
 
-        orderDao.createOrderItems(userId, orderItemList);
+        orderDao.createOrderItems(orderId, orderItemList);
         return orderId;
     }
 }
