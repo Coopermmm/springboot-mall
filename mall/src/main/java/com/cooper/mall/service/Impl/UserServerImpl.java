@@ -1,4 +1,4 @@
-package com.cooper.mall.service.ProductServiceImpl;
+package com.cooper.mall.service.Impl;
 
 import com.cooper.mall.dao.UserDao;
 import com.cooper.mall.dto.UserLoginRequest;

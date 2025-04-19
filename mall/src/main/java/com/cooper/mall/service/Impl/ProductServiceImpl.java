@@ -1,6 +1,5 @@
-package com.cooper.mall.service.ProductServiceImpl;
+package com.cooper.mall.service.Impl;
 
-import com.cooper.mall.constants.ProductCategory;
 import com.cooper.mall.dao.ProductDao;
 import com.cooper.mall.dto.ProductQueryParams;
 import com.cooper.mall.dto.ProductRequest;
