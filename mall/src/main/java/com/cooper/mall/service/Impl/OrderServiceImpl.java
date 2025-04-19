@@ -5,6 +5,7 @@ import com.cooper.mall.dao.ProductDao;
 import com.cooper.mall.dao.UserDao;
 import com.cooper.mall.dto.BuyItem;
 import com.cooper.mall.dto.CreateOrderRequest;
+import com.cooper.mall.dto.OrderQueryParams;
 import com.cooper.mall.model.Order;
 import com.cooper.mall.model.OrderItem;
 import com.cooper.mall.model.Product;
@@ -42,6 +43,22 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItemList = orderDao.getOrderItemById(orderId);
         order.setOrderItemList(orderItemList);
         return order;
+    }
+
+    @Override
+    public List<Order> getOrders(OrderQueryParams orderQueryParams) {
+        List<Order> orderList = orderDao.getOrders(orderQueryParams);
+        for (Order order : orderList){
+            List<OrderItem> orderItemList = orderDao.getOrderItemById(order.getOrderId());
+            order.setOrderItemList(orderItemList);
+        }
+        return orderList;
+    }
+
+    @Override
+    public Integer countOrder(OrderQueryParams orderQueryParams) {
+        Integer count = orderDao.countOrder(orderQueryParams);
+        return count;
     }
 
     @Transactional
