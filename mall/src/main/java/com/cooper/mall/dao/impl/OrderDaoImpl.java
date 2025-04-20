@@ -28,7 +28,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Order getOrderById(Integer orderId) {
         String sql = " SELECT order_id, user_id, total_amount, created_date, last_modified_date " +
-                " FROM `order` WHERE order_id = :orderId ";
+                " FROM orders WHERE order_id = :orderId ";
         Map<String, Object> map = new HashMap<>();
         map.put("orderId", orderId);
         List<Order> orderList = namedParameterJdbcTemplate.query(sql, map, new OrderRowMapper());
@@ -41,7 +41,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> getOrders(OrderQueryParams orderQueryParams) {
-        String sql = " SELECT order_id, user_id, total_amount, created_date, last_modified_date FROM `order` WHERE 1=1 ";
+        String sql = " SELECT order_id, user_id, total_amount, created_date, last_modified_date FROM orders WHERE 1=1 ";
         Map<String, Object> map = new HashMap<>();
         // 查詢條件
         sql = addFilteringSql(sql, map, orderQueryParams);
@@ -58,7 +58,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Integer countOrder(OrderQueryParams orderQueryParams) {
-        String sql = " SELECT count(*) FROM `order` WHERE 1=1 ";
+        String sql = " SELECT count(*) FROM orders WHERE 1=1 ";
         Map<String, Object> map = new HashMap<>();
         addFilteringSql(sql, map, orderQueryParams);
         Integer total = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
@@ -79,7 +79,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Integer createOrder(Integer userId, Integer totalAmount) {
-        String sql = " INSERT INTO `order`(user_id, total_amount, created_date, last_modified_date) " +
+        String sql = " INSERT INTO orders(user_id, total_amount, created_date, last_modified_date) " +
                 " VALUES (:userId, :totalAmount, :createdDate, :lastModifiedDate) ";
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
