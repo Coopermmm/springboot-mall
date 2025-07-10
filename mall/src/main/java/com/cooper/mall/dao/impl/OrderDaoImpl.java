@@ -60,7 +60,7 @@ public class OrderDaoImpl implements OrderDao {
     public Integer countOrder(OrderQueryParams orderQueryParams) {
         String sql = " SELECT count(*) FROM orders WHERE 1=1 ";
         Map<String, Object> map = new HashMap<>();
-        addFilteringSql(sql, map, orderQueryParams);
+        sql = addFilteringSql(sql, map, orderQueryParams);
         Integer total = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
         return total;
     }
